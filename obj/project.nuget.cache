@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "dgSpecHash": "TyDDq8OxLpA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zeffi\\OneDrive\\Documents\\GitHub\\InfernoClimber_DisplayHpMpSpDigits\\DisplayHPStamMPHudDigits.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zeffi\\.nuget\\packages\\bepinex.analyzers\\1.0.8\\bepinex.analyzers.1.0.8.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\bepinex.baselib\\5.4.20\\bepinex.baselib.5.4.20.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\bepinex.core\\5.4.21\\bepinex.core.5.4.21.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\bepinex.plugininfoprops\\2.1.0\\bepinex.plugininfoprops.2.1.0.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\harmonyx\\2.7.0\\harmonyx.2.7.0.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net35\\1.0.2\\microsoft.netframework.referenceassemblies.net35.1.0.2.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\mono.cecil\\0.10.4\\mono.cecil.0.10.4.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\monomod.runtimedetour\\21.12.13.1\\monomod.runtimedetour.21.12.13.1.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\monomod.utils\\21.12.13.1\\monomod.utils.21.12.13.1.nupkg.sha512",
+    "C:\\Users\\zeffi\\.nuget\\packages\\unityengine.modules\\4.7.1\\unityengine.modules.4.7.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "DisplayHPStamMPHudDigits depends on UnityEngine.Modules (>= 4.7.0.10253309) but UnityEngine.Modules 4.7.0.10253309 was not found. UnityEngine.Modules 4.7.1 was resolved instead.",
+      "libraryId": "UnityEngine.Modules",
+      "targetGraphs": [
+        ".NETFramework,Version=v3.5"
+      ]
+    }
+  ]
+}
