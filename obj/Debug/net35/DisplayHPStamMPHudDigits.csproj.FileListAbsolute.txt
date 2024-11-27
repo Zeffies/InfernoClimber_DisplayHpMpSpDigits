@@ -1,0 +1,14 @@
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\bin\Debug\net35\DisplayHPStamMPHudDigits.dll
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\bin\Debug\net35\DisplayHPStamMPHudDigits.pdb
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\bin\Debug\net35\Assembly-CSharp.dll
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\bin\Debug\net35\Assembly-UnityScript-firstpass.dll
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\DisplayHPStamMPHudDigits.csproj.AssemblyReference.cache
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\MyPluginInfo.cs
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\DisplayHPStamMPHudDigits.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\DisplayHPStamMPHudDigits.AssemblyInfoInputs.cache
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\DisplayHPStamMPHudDigits.AssemblyInfo.cs
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\DisplayHPStamMPHudDigits.csproj.CoreCompileInputs.cache
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\DisplayHPStamMPHudDigits.sourcelink.json
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\DisplayH.41AAAFBF.Up2Date
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\DisplayHPStamMPHudDigits.dll
+C:\Users\zeffi\OneDrive\Documents\GitHub\InfernoClimber_DisplayHpMpSpDigits\obj\Debug\net35\DisplayHPStamMPHudDigits.pdb
