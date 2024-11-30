@@ -6,7 +6,7 @@ current features:
 
 - option to change what colour your hp number display as and what colour it flashes to when in danger (less then 30% hp)
 
-===================================================================================================================
+======================================================
 
 planned features:
 
