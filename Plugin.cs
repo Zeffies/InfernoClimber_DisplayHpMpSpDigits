@@ -21,24 +21,28 @@ public class Plugin : BaseUnityPlugin
     public static ConfigEntry<float> configHpTextR;
     public static ConfigEntry<float> configHpTextG;
     public static ConfigEntry<float> configHpTextB;
+
+    // i wanted to make it so you could change what % hp the game flashes your HP + gives you the danger sound but it ended up being more
+    // trouble than it works, sadly. i'll go back and try again at some point
+
     // public static ConfigEntry<int> configHpForDanger;
-    // public static ConfigEntry<float> configHpDangerColourR;
-    // public static ConfigEntry<float> configHpDangerColourG;
-    // public static ConfigEntry<float> configHpDangerColourB;
+    public static ConfigEntry<float> configHpDangerColourR;
+    public static ConfigEntry<float> configHpDangerColourG;
+    public static ConfigEntry<float> configHpDangerColourB;
     private void Awake()
     {
         // bind settings
         configFixHpMpFullness = Config.Bind("General", "FixHpMpFullness", true, "Makes it so when you're full HP or MP it actually displays that properly");
 
-        configHpTextR = Config.Bind("HpAsText.Color", "R", (float)255, new ConfigDescription("R", new AcceptableValueRange<float>(1f, 255f))); 
-        configHpTextG = Config.Bind("HpAsText.Color", "G", (float)234.6, new ConfigDescription("G", new AcceptableValueRange<float>(1f, 255f)));
-        configHpTextB = Config.Bind("HpAsText.Color", "B", (float)4.08, new ConfigDescription("B", new AcceptableValueRange<float>(1f, 255f)));
+        configHpTextR = Config.Bind("HpAsText.Color", "R", (float)255, new ConfigDescription("R", new AcceptableValueRange<float>(0f, 255f))); 
+        configHpTextG = Config.Bind("HpAsText.Color", "G", (float)234.6, new ConfigDescription("G", new AcceptableValueRange<float>(0f, 255f)));
+        configHpTextB = Config.Bind("HpAsText.Color", "B", (float)4.08, new ConfigDescription("B", new AcceptableValueRange<float>(0f, 255f)));
 
         // configHpForDanger = Config.Bind("HpAsText.Danger", "Hp % For Danger", 30, new ConfigDescription("What percent should your HP text start flashing. 0 for never flash, 100 always flash", new AcceptableValueRange<int>(0, 100)));
 
-        // configHpDangerColourR = Config.Bind("HpAsText.Danger", "R", (float)255, new ConfigDescription("R", new AcceptableValueRange<float>(1f, 255f)));
-        // configHpDangerColourG = Config.Bind("HpAsText.Danger", "G", (float)0, new ConfigDescription("G", new AcceptableValueRange<float>(1f, 255f)));
-        // configHpDangerColourB = Config.Bind("HpAsText.Danger", "B", (float)0, new ConfigDescription("B", new AcceptableValueRange<float>(1f, 255f)));
+        configHpDangerColourR = Config.Bind("HpAsText.Danger", "R", (float)255, new ConfigDescription("R", new AcceptableValueRange<float>(0f, 255f)));
+        configHpDangerColourG = Config.Bind("HpAsText.Danger", "G", (float)0, new ConfigDescription("G", new AcceptableValueRange<float>(0f, 255f)));
+        configHpDangerColourB = Config.Bind("HpAsText.Danger", "B", (float)0, new ConfigDescription("B", new AcceptableValueRange<float>(0f, 255f)));
 
         // Plugin startup logic
         Logger = base.Logger;
@@ -86,7 +90,14 @@ public class GUIEnergyBarConnector_Update
 
         // set hpInfoFontText to say current/max hp instead of FULL
         __instance.m_hpInfoFontText.SetText(((int)__instance.m_playerGos.GetHp()).ToString() + "/" + __instance.m_playerGos.m_max_hp.ToString());
-        // __instance.m_hpInfoFontTextTweenColor.from = new Color(Plugin.configHpDangerColourR.Value / 255, Plugin.configHpDangerColourG.Value / 255, Plugin.configHpDangerColourB.Value / 255);
+
+        // set tween colors
+        if (__instance.m_hpInfoFontTextTweenColor.from != new Color(Plugin.configHpDangerColourB.Value / 255, Plugin.configHpDangerColourG.Value / 255, Plugin.configHpDangerColourB.Value / 255) || 
+            __instance.m_hpInfoFontTextTweenColor.to != new Color(Plugin.configHpTextR.Value / 255, Plugin.configHpTextG.Value / 255, Plugin.configHpTextB.Value / 255))
+        {
+            __instance.m_hpInfoFontTextTweenColor.from = new Color(Plugin.configHpDangerColourR.Value / 255, Plugin.configHpDangerColourG.Value / 255, Plugin.configHpDangerColourB.Value / 255);
+            __instance.m_hpInfoFontTextTweenColor.to = new Color(Plugin.configHpTextR.Value / 255, Plugin.configHpTextG.Value / 255, Plugin.configHpTextB.Value / 255);
+        }
 
         bool flag2 = __instance.m_slideAnimationMode == GUIEnergyBarConnector.SlideAnimationMode.FinishSlideIn || __instance.m_slideAnimationMode == GUIEnergyBarConnector.SlideAnimationMode.FinishSlideOut;
 
@@ -98,7 +109,7 @@ public class GUIEnergyBarConnector_Update
 
         if (__instance.m_hpInfoFontText.GetLabelAlpha() >= .95f && flag2)
         {
-            __instance.m_hpInfoFontTextTweenColor.to = new Color(Plugin.configHpTextR.Value / 255, Plugin.configHpTextG.Value / 255, Plugin.configHpTextB.Value / 255);
+            // if (__instance.m_playerGos.GetHpRateIgnoreBadStatus() > (float)Plugin.configHpForDanger.Value / 100)
             if (__instance.m_playerGos.GetHpRateIgnoreBadStatus() > .3f)
             {
                 __instance.m_hpInfoFontText.gameObject.SetActive(true);
@@ -107,20 +118,21 @@ public class GUIEnergyBarConnector_Update
                 __instance.m_hpInfoFontTextTweenColor.enabled = false;
                 __instance.m_hpInfoFontTextTweenScale.enabled = false;
             }
-        //     else if (__instance.m_playerGos.GetHpRateIgnoreBadStatus() <= (float)Plugin.configHpForDanger.Value /100)
-        //     {
-        //         __instance.m_hpInfoFontText.gameObject.SetActive(true);
-        //         __instance.m_hpInfoFontTextTweenColor.enabled = true;
-        //         __instance.m_hpInfoFontTextTweenScale.enabled = true;
-        //         if (__instance.m_hpBar.gameObject.activeSelf)
-        //         {
-        //             Plugin.flagForDangerSound = true;
-        //         }
-        //     }
-        //     else
-        //     { 
-        //         __instance.m_hpInfoFontText.gameObject.SetActive(false);
-        //     }
+                                                                                                                                                                                // TODO: fix the issue where tweencolor only works at .3f hp
+            // else if (__instance.m_playerGos.GetHpRateIgnoreBadStatus() <= (float)Plugin.configHpForDanger.Value /100)
+            // {
+            //     __instance.m_hpInfoFontText.gameObject.SetActive(true);
+            //     __instance.m_hpInfoFontTextTweenColor.enabled = true;
+            //     __instance.m_hpInfoFontTextTweenScale.enabled = true;
+            //     if (__instance.m_hpBar.gameObject.activeSelf)
+            //     {
+            //         Plugin.flagForDangerSound = true;
+            //     }
+            // }
+            // else
+            // { 
+            //     __instance.m_hpInfoFontText.gameObject.SetActive(false);
+            // }
 
         }
         // if (Plugin.flagForDangerSound)
