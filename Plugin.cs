@@ -114,12 +114,12 @@ public class GUIEnergyBarConnector_Start
                 Plugin.Logger.LogInfo("Adding NGUILabelSetTextFromTextId to mpInfoFont.");
                 mpInfoFontText = mpInfoFont.AddComponent<NGUILabelSetTextFromTextId>();
             }
-            mpTextResolutionFix = mpInfoFont.GetComponent<RegistResolutionFitInfoList>();
-            if (mpTextResolutionFix == null)
-            {
-                Plugin.Logger.LogInfo("Adding RegistResolutionFitInfoList to mpInfoFont");
-                mpTextResolutionFix = mpInfoFont.AddComponent<RegistResolutionFitInfoList>();
-            }
+            // mpTextResolutionFix = mpInfoFont.GetComponent<RegistResolutionFitInfoList>();
+            // if (mpTextResolutionFix == null)
+            // {
+            //     Plugin.Logger.LogInfo("Adding RegistResolutionFitInfoList to mpInfoFont");
+            //     mpTextResolutionFix = mpInfoFont.AddComponent<RegistResolutionFitInfoList>();
+            // }
             if (!Plugin.setupMpFont)
             {
                 UILabel sourceLabel = (UILabel)__instance.m_hpInfoFontText.GetComponent("UILabel");
