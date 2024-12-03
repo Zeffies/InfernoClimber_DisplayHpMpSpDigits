@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DisplayHPStamMPHudDigits")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.2.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.2.1+06af859134c140d626da91a7f76e6ae7f65f16e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.2.1+35b2ed9fd65ca470a8260a53d05fb430fc256430")]
 [assembly: System.Reflection.AssemblyProductAttribute("Display HP Stam MP Hud Digits")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DisplayHPStamMPHudDigits")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.2.1.0")]

@@ -153,107 +153,8 @@ public class GUIEnergyBarConnector_Update
         // float hpInfoFontText_Alpha = __instance.m_hpInfoFontText.GetLabelAlpha();
         bool flag2 = __instance.m_slideAnimationMode == GUIEnergyBarConnector.SlideAnimationMode.FinishSlideIn || __instance.m_slideAnimationMode == GUIEnergyBarConnector.SlideAnimationMode.FinishSlideOut;
 
-        if (GUIEnergyBarConnector_Start.diabloSphereBarMp != null)
-        {
 
-            GUIEnergyBarConnector_Start.mpInfoFontText.SetText(((int)__instance.m_playerGos.GetMp()).ToString() + "/" + __instance.m_playerGos.m_max_mp.ToString());
-            
-
-            // copy hp text active state and do the stuff it does when active
-            if (__instance.m_hpInfoFontText.gameObject.activeSelf)
-            {
-                if (!GUIEnergyBarConnector_Start.mpInfoFont.gameObject.activeSelf)
-                {
-                    Debug.Log("setting mpinfofont active");
-                }
-                GUIEnergyBarConnector_Start.mpInfoFont.gameObject.SetActive(true);
-                if (Plugin.setupInitialColor == false)
-                {
-                    // set initial colour
-                    Debug.Log("setting up mp text initial color");
-                    GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelColor(new Color (Plugin.configMpTextR.Value / 255, Plugin.configMpTextG.Value / 255, Plugin.configMpTextB.Value / 255));
-                    Plugin.setupInitialColor = true;
-                }
-
-                // copy hp text alpha
-                if (GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelAlpha() != __instance.m_hpInfoFontText.GetLabelAlpha())
-                {
-                    if (__instance.m_hpInfoFontText.GetLabelAlpha() >= .01f)                                                        // todo move alpha logic to where hpinfotext processes it
-                    {
-                        // Debug.Log("mpBarLabelAlpha = " + GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelAlpha());
-                        // Debug.Log("hpbar alpha= " + __instance.m_hpInfoFontText.GetLabelAlpha());
-                        GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelAlpha(__instance.m_hpInfoFontText.GetLabelAlpha());
-                    }
-                    else
-                    {
-                        GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelAlpha(0f);
-                    }
-                }
-                
-                // set position
-                float num = __instance.m_playerGos.GetMaxMp() / 100f;                                                                                                   //TODO move localposition logic to SetupHUDUsingPlayerGos
-                int num2 = Mathf.CeilToInt(num);
-                if (GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition != new Vector3(-874f, 385f, 1000f) + new Vector3(47.3f * num2, 0f, 0f))
-                {
-                    Debug.Log("repeat count = " + num2);
-                    GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition = new Vector3(-874f, 385f, 1000f) + new Vector3(47.3f * num2, 0f, 0f);
-                }
-                GUIEnergyBarConnector_Start.mpInfoFontText.transform.localScale = Vector3.one;
-                var currentColor = GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelColor();
-                if (Math.Truncate(currentColor.r * 255) != Math.Truncate(Plugin.configMpTextR.Value) || 
-                    Math.Truncate(currentColor.g * 255) != Math.Truncate(Plugin.configMpTextG.Value) || 
-                    Math.Truncate(currentColor.b * 255) != Math.Truncate(Plugin.configMpTextB.Value)
-                    )
-                {
-                    // Debug.Log("\n current color r = " + Math.Truncate(currentColor.r * 255) + " || configmptext r =" + Math.Truncate(Plugin.configMpTextR.Value) + "\n"
-                    //         + "current color g = " + Math.Truncate(currentColor.g * 255) + " || configmptext g =" + Math.Truncate(Plugin.configMpTextG.Value)     + "\n"
-                    //         + "current color b = " + Math.Truncate(currentColor.b * 255) + " || configmptext b =" + Math.Truncate(Plugin.configMpTextB.Value));
-                    GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelColor(new Color (Plugin.configMpTextR.Value / 255, Plugin.configMpTextG.Value / 255, Plugin.configMpTextB.Value / 255));
-                }
-            }
-            else if (GUIEnergyBarConnector_Start.mpInfoFont.gameObject.activeSelf)
-            {
-                Debug.Log("setting mpinfofont inactive");
-                GUIEnergyBarConnector_Start.mpInfoFont.gameObject.SetActive(false);
-            }
-
-            // if (__instance.m_hpInfoFontText.GetLabelAlpha() >= .95f && flag2)
-            // {
-            //     if (!GUIEnergyBarConnector_Start.mpInfoFont.gameObject.activeSelf)
-            //     {
-            //         Debug.Log("setting mptext as active");
-            //         GUIEnergyBarConnector_Start.mpInfoFont.gameObject.SetActive(true);
-            //     }
-            //     float num = __instance.m_playerGos.GetMaxMp() / 100f;
-            //     int num2 = Mathf.CeilToInt(num);
-            //     if (GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition != new Vector3(-864f, 385f, 1000f) + new Vector3(44f * (float)num2, 0f, 0f))
-            //     {
-            //         GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition = new Vector3(-864f, 385f, 1000f) + new Vector3(44f * (float)num2, 0f, 0f);
-            //     }
-            //     GUIEnergyBarConnector_Start.mpInfoFontText.transform.localScale = Vector3.one;
-            //     GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelColor(new Color (Plugin.configMpTextR.Value / 255, Plugin.configMpTextG.Value / 255, Plugin.configMpTextB.Value / 255));
-            // }
-            // if (GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelAlpha() <= 0f && GUIEnergyBarConnector_Start.mpInfoFont.gameObject.activeSelf)
-            // {
-            //     Debug.Log("setting mptext as inactive");
-            //     GUIEnergyBarConnector_Start.mpInfoFont.gameObject.SetActive(false);
-            // }
-            // if (GUIEnergyBarConnector_Start.mpInfoFont.activeSelf)
-            // {
-            //     if (GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelAlpha() != __instance.m_hpInfoFontText.GetLabelAlpha())
-            //     {
-            //         if (__instance.m_hpInfoFontText.GetLabelAlpha() >= .01f)
-            //         {
-            //             Debug.Log("mpBarLabelAlpha = " + GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelAlpha());
-            //             GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelAlpha(__instance.m_hpInfoFontText.GetLabelAlpha());
-            //         }
-            //         else
-            //         {
-            //             GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelAlpha(0f);
-            //         }
-            //     }
-            // }
-        }
+        
         
         // fix hp and mp bar to actually display as full if you don't have a max hp/mp stat divisible by 100
         if (Plugin.configFixHpMpFullness.Value)
@@ -354,7 +255,71 @@ public class GUIEnergyBarConnector_Update
                 Plugin.hpInfoFontText_initial = new Vector3(-1, -1, -1);
             }
         }
+        
+        if (GUIEnergyBarConnector_Start.diabloSphereBarMp != null)
+        {
 
+            GUIEnergyBarConnector_Start.mpInfoFontText.SetText(((int)__instance.m_playerGos.GetMp()).ToString() + "/" + __instance.m_playerGos.m_max_mp.ToString());
+            
+
+            // copy hp text active state and do the stuff it does when active
+            if (__instance.m_hpInfoFontText.gameObject.activeSelf)
+            {
+                // if (!GUIEnergyBarConnector_Start.mpInfoFont.gameObject.activeSelf)
+                // {
+                //     Debug.Log("setting mpinfofont active");
+                // }
+                GUIEnergyBarConnector_Start.mpInfoFont.gameObject.SetActive(true);
+                if (Plugin.setupInitialColor == false)
+                {
+                    // set initial colour
+                    Debug.Log("setting up mp text initial color");
+                    GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelColor(new Color (Plugin.configMpTextR.Value / 255, Plugin.configMpTextG.Value / 255, Plugin.configMpTextB.Value / 255));
+                    Plugin.setupInitialColor = true;
+                }
+
+                // copy hp text alpha
+                if (GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelAlpha() != __instance.m_hpInfoFontText.GetLabelAlpha())
+                {
+                    if (__instance.m_hpInfoFontText.GetLabelAlpha() >= .01f)                                                        // todo move alpha logic to where hpinfotext processes it
+                    {
+                        // Debug.Log("mpBarLabelAlpha = " + GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelAlpha());
+                        // Debug.Log("hpbar alpha= " + __instance.m_hpInfoFontText.GetLabelAlpha());
+                        GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelAlpha(__instance.m_hpInfoFontText.GetLabelAlpha());
+                    }
+                    else
+                    {
+                        GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelAlpha(0f);
+                    }
+                }
+                
+                // set position
+                float num = __instance.m_playerGos.GetMaxMp() / 100f;                                                                                                   //TODO move localposition logic to SetupHUDUsingPlayerGos
+                int num2 = Mathf.CeilToInt(num);
+                if (GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition != new Vector3(-874f, 385f, 1000f) + new Vector3(47.3f * num2, 0f, 0f))
+                {
+                    Debug.Log("repeat count = " + num2);
+                    GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition = new Vector3(-874f, 385f, 1000f) + new Vector3(47.3f * num2, 0f, 0f);
+                }
+                GUIEnergyBarConnector_Start.mpInfoFontText.transform.localScale = Vector3.one;
+                var currentColor = GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelColor();
+                if (Math.Truncate(currentColor.r * 255) != Math.Truncate(Plugin.configMpTextR.Value) || 
+                    Math.Truncate(currentColor.g * 255) != Math.Truncate(Plugin.configMpTextG.Value) || 
+                    Math.Truncate(currentColor.b * 255) != Math.Truncate(Plugin.configMpTextB.Value)
+                    )
+                {
+                    // Debug.Log("\n current color r = " + Math.Truncate(currentColor.r * 255) + " || configmptext r =" + Math.Truncate(Plugin.configMpTextR.Value) + "\n"
+                    //         + "current color g = " + Math.Truncate(currentColor.g * 255) + " || configmptext g =" + Math.Truncate(Plugin.configMpTextG.Value)     + "\n"
+                    //         + "current color b = " + Math.Truncate(currentColor.b * 255) + " || configmptext b =" + Math.Truncate(Plugin.configMpTextB.Value));
+                    GUIEnergyBarConnector_Start.mpInfoFontText.SetLabelColor(new Color (Plugin.configMpTextR.Value / 255, Plugin.configMpTextG.Value / 255, Plugin.configMpTextB.Value / 255));
+                }
+            }
+            else if (GUIEnergyBarConnector_Start.mpInfoFont.gameObject.activeSelf)
+            {
+                // Debug.Log("setting mpinfofont inactive");
+                GUIEnergyBarConnector_Start.mpInfoFont.gameObject.SetActive(false);
+            }
+        }
     }
 }
 
