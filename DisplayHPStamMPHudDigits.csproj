@@ -4,7 +4,7 @@
     <TargetFramework>net35</TargetFramework>
     <AssemblyName>DisplayHPStamMPHudDigits</AssemblyName>
     <Product>Display HP Stam MP Hud Digits</Product>
-    <Version>1.2.2</Version>
+    <Version>1.3.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>

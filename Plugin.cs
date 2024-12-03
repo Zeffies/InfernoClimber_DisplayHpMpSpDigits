@@ -293,14 +293,14 @@ public class GUIEnergyBarConnector_Update
                     }
                 }
                 
-                // set position
-                float num = __instance.m_playerGos.GetMaxMp() / 100f;                                                                                                   //TODO move localposition logic to SetupHUDUsingPlayerGos
-                int num2 = Mathf.CeilToInt(num);
-                if (GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition != new Vector3(-874f, 385f, 1000f) + new Vector3(47.3f * num2, 0f, 0f))
-                {
-                    Debug.Log("repeat count = " + num2);
-                    GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition = new Vector3(-874f, 385f, 1000f) + new Vector3(47.3f * num2, 0f, 0f);
-                }
+                // // set position
+                // float num = __instance.m_playerGos.GetMaxMp() / 100f;                                                                                                   //TODO move localposition logic to SetupHUDUsingPlayerGos
+                // int num2 = Mathf.CeilToInt(num);
+                // if (GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition != new Vector3(-874f, 385f, 1000f) + new Vector3(47.3f * num2, 0f, 0f))
+                // {
+                //     Debug.Log("repeat count = " + num2);
+                //     GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition = new Vector3(-874f, 385f, 1000f) + new Vector3(47.3f * num2, 0f, 0f);
+                // }
                 GUIEnergyBarConnector_Start.mpInfoFontText.transform.localScale = Vector3.one;
                 var currentColor = GUIEnergyBarConnector_Start.mpInfoFontText.GetLabelColor();
                 if (Math.Truncate(currentColor.r * 255) != Math.Truncate(Plugin.configMpTextR.Value) || 
@@ -323,19 +323,24 @@ public class GUIEnergyBarConnector_Update
     }
 }
 
-// [HarmonyPatch(typeof(GUIEnergyBarConnector), "SetupHUDByUsingPlayerGos")]
-// public class GUIEnergyBarConnector_SetupHUDByUsingPlayerGos
-// {
-//     [HarmonyPrefix]
-//     static void FixEmptyStaminaPosition(GUIEnergyBarConnector __instance, ref float ___m_hpInfoFontBlockShiftSize, GameObjectStatus pc_gos)
-//     {
-//         float mynum3 = pc_gos.GetStaminaMaxIgnoreBadStatus() / 100f;
-//         Debug.Log("mynum3 = " + mynum3);
-//         Vector3 m_spInfoFontStartLeft = new Vector3(-945f, 429f, 1000f);
-// 		int mynum4 = Mathf.CeilToInt(mynum3);
-//         __instance.m_spInfoFontText.transform.localPosition = m_spInfoFontStartLeft + new Vector3(___m_hpInfoFontBlockShiftSize * (float)mynum4, 0f, 0f);
-//     }
-// }
+[HarmonyPatch(typeof(GUIEnergyBarConnector), "SetupHUDByUsingPlayerGos")]
+public class GUIEnergyBarConnector_SetupHUDByUsingPlayerGos
+{
+    [HarmonyPostfix]
+    static void FixEmptyStaminaPosition(GUIEnergyBarConnector __instance, ref EnergyBarRenderer ___m_spRenderer)
+    {
+        if (GUIEnergyBarConnector_Start.diabloSphereBarMp != null)
+        {
+            // set mp text position
+            float num = __instance.m_playerGos.GetMaxMp() / 100f;                                                                                                   
+            int num2 = Mathf.CeilToInt(num);
+            // Debug.Log("repeat count = " + num2);
+            GUIEnergyBarConnector_Start.mpInfoFont.transform.localPosition = new Vector3(-874f, 385f, 1000f) + new Vector3(47.3f * num2, 0f, 0f);
+        }
+        // fix stamina text position
+        __instance.m_spInfoFontText.transform.localPosition = new Vector3(-955f, 433f, 1000f) + new Vector3(___m_spRenderer.size.x * 2200f, 0, 0);
+    }
+}
 
 // [HarmonyPatch(typeof(GUIEnergyBarConnector), "SetupHUDByUsingPlayerGos")]
 // public class GUIEnergyBarConnector_SetupHUDByUsingPlayerGos
