@@ -4,6 +4,6 @@ namespace DisplayHPStamMPHudDigits
     {
         public const string PLUGIN_GUID = "DisplayHPStamMPHudDigits";
         public const string PLUGIN_NAME = "Display HP Stam MP Hud Digits";
-        public const string PLUGIN_VERSION = "1.2.1";
+        public const string PLUGIN_VERSION = "1.2.2";
     }
 }
